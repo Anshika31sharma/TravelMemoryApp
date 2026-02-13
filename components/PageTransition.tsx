@@ -8,7 +8,7 @@ const pageVariants = {
   exit: { opacity: 0, y: -4 },
 };
 
-const pageTransition = { type: "tween", duration: 0.3, ease: "easeOut" };
+const pageTransition = { type: "tween" as const, duration: 0.3, ease: "easeOut" as const };
 
 export function PageTransition({ children, className }: { children: React.ReactNode; className?: string }) {
   return (

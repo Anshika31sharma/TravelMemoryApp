@@ -21,12 +21,12 @@ export async function authFetch(
 ): Promise<Response> {
   const url = `${API_BASE}${path}`;
   const token = getToken();
-  const headers: HeadersInit = {
-    ...(options.headers || {}),
+  const headers: Record<string, string> = {
+    ...(options.headers as Record<string, string> || {}),
     ...(token ? { Authorization: `Bearer ${token}` } : {}),
   };
   if (options.body && typeof options.body === "string" && !headers["Content-Type"]) {
-    (headers as Record<string, string>)["Content-Type"] = "application/json";
+    headers["Content-Type"] = "application/json";
   }
   return fetch(url, { ...options, headers });
 }
